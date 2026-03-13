@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB0000000000000000000001 /* HeatBitsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30CC6B0A3204804AF6EDDBC /* HeatBitsApp.swift */; };
+		BB0000000000000000000002 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8EDF76B9124A48800E4934 /* Habit.swift */; };
+		BB0000000000000000000003 /* HabitLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369FD3DA8FBB43649DC7CE2A /* HabitLog.swift */; };
+		BB0000000000000000000004 /* HabitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20418C455FDE497197C1F350 /* HabitStore.swift */; };
+		BB0000000000000000000005 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05190DDE9B8458DB11CAF88 /* HealthKitManager.swift */; };
+		BB0000000000000000000006 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE31C1578B2B4911B9DBC4AA /* ContentView.swift */; };
+		BB0000000000000000000007 /* CalendarHeatmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22390C3786C2465F84F122AA /* CalendarHeatmapView.swift */; };
+		BB0000000000000000000008 /* DayDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30641328FCE14D60AFF39C3B /* DayDetailView.swift */; };
+		BB0000000000000000000009 /* AddEditHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C63D24E47B74F9480A767EF /* AddEditHabitView.swift */; };
+		BB000000000000000000000A /* TrendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575C1DEECEA84CBA9EBB5FF2 /* TrendsView.swift */; };
+		BB0000000000000000000011 /* YearHeatmapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC000000000000000000000A /* YearHeatmapView.swift */; };
+		BB000000000000000000000B /* SmartReminderEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4C72367814BB09EE5DC53 /* SmartReminderEngine.swift */; };
+		BB000000000000000000000C /* LogHabitIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF99A629037422587E2AB80 /* LogHabitIntent.swift */; };
+		BB000000000000000000000D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE19BE0DED84336B129D193 /* Extensions.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1EA4C8265FFD4101939B8D94 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		20418C455FDE497197C1F350 /* HabitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitStore.swift; sourceTree = "<group>"; };
+		22390C3786C2465F84F122AA /* CalendarHeatmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHeatmapView.swift; sourceTree = "<group>"; };
+		2C63D24E47B74F9480A767EF /* AddEditHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEditHabitView.swift; sourceTree = "<group>"; };
+		30641328FCE14D60AFF39C3B /* DayDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailView.swift; sourceTree = "<group>"; };
+		369FD3DA8FBB43649DC7CE2A /* HabitLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitLog.swift; sourceTree = "<group>"; };
+		3C8EDF76B9124A48800E4934 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
+		575C1DEECEA84CBA9EBB5FF2 /* TrendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendsView.swift; sourceTree = "<group>"; };
+		CC000000000000000000000A /* YearHeatmapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearHeatmapView.swift; sourceTree = "<group>"; };
+		6EE19BE0DED84336B129D193 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		78D4C72367814BB09EE5DC53 /* SmartReminderEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartReminderEngine.swift; sourceTree = "<group>"; };
+		827F2D85F66F46FAAE512475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		993A22749A35482E8E0B454A /* HeatBits.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeatBits.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BBC230DF2134E91B208984B /* AppIntents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppIntents.framework; path = System/Library/Frameworks/AppIntents.framework; sourceTree = SDKROOT; };
+		AAF99A629037422587E2AB80 /* LogHabitIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHabitIntent.swift; sourceTree = "<group>"; };
+		BD3FACD7426043FA80B54645 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		D05190DDE9B8458DB11CAF88 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		F30CC6B0A3204804AF6EDDBC /* HeatBitsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatBitsApp.swift; sourceTree = "<group>"; };
+		FE31C1578B2B4911B9DBC4AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		CC0000000000000000000001 /* HeatmapHabits */ = {
+			isa = PBXGroup;
+			children = (
+				F30CC6B0A3204804AF6EDDBC /* HeatBitsApp.swift */,
+				827F2D85F66F46FAAE512475 /* Info.plist */,
+				CC0000000000000000000004 /* Models */,
+				CC0000000000000000000005 /* ViewModels */,
+				CC0000000000000000000006 /* Views */,
+				CC0000000000000000000007 /* Notifications */,
+				CC0000000000000000000008 /* Intents */,
+				CC0000000000000000000009 /* Utils */,
+			);
+			name = HeatBits;
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				CC0000000000000000000001 /* HeatmapHabits */,
+				CC0000000000000000000003 /* Products */,
+				D847447D2F6430B700BFE458 /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				993A22749A35482E8E0B454A /* HeatBits.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3C8EDF76B9124A48800E4934 /* Habit.swift */,
+				369FD3DA8FBB43649DC7CE2A /* HabitLog.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000005 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				20418C455FDE497197C1F350 /* HabitStore.swift */,
+				D05190DDE9B8458DB11CAF88 /* HealthKitManager.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FE31C1578B2B4911B9DBC4AA /* ContentView.swift */,
+				22390C3786C2465F84F122AA /* CalendarHeatmapView.swift */,
+				30641328FCE14D60AFF39C3B /* DayDetailView.swift */,
+				2C63D24E47B74F9480A767EF /* AddEditHabitView.swift */,
+				575C1DEECEA84CBA9EBB5FF2 /* TrendsView.swift */,
+				CC000000000000000000000A /* YearHeatmapView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000007 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				78D4C72367814BB09EE5DC53 /* SmartReminderEngine.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000008 /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				AAF99A629037422587E2AB80 /* LogHabitIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		CC0000000000000000000009 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6EE19BE0DED84336B129D193 /* Extensions.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		D847447D2F6430B700BFE458 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				1EA4C8265FFD4101939B8D94 /* HealthKit.framework */,
+				9BBC230DF2134E91B208984B /* AppIntents.framework */,
+				BD3FACD7426043FA80B54645 /* UserNotifications.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EE0000000000000000000001 /* HeatmapHabits */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE0000000000000000000004 /* Build configuration list for PBXNativeTarget "HeatmapHabits" */;
+			buildPhases = (
+				DD0000000000000000000001 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HeatBits;
+			productName = HeatBits;
+			productReference = 993A22749A35482E8E0B454A /* HeatBits.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EE0000000000000000000002 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2630;
+				TargetAttributes = {
+					EE0000000000000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = EE0000000000000000000003 /* Build configuration list for PBXProject "HeatmapHabits" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CC0000000000000000000002;
+			productRefGroup = CC0000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EE0000000000000000000001 /* HeatmapHabits */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DD0000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB0000000000000000000001 /* HeatBitsApp.swift in Sources */,
+				BB0000000000000000000002 /* Habit.swift in Sources */,
+				BB0000000000000000000003 /* HabitLog.swift in Sources */,
+				BB0000000000000000000004 /* HabitStore.swift in Sources */,
+				BB0000000000000000000005 /* HealthKitManager.swift in Sources */,
+				BB0000000000000000000006 /* ContentView.swift in Sources */,
+				BB0000000000000000000007 /* CalendarHeatmapView.swift in Sources */,
+				BB0000000000000000000008 /* DayDetailView.swift in Sources */,
+				BB0000000000000000000009 /* AddEditHabitView.swift in Sources */,
+				BB000000000000000000000A /* TrendsView.swift in Sources */,
+				BB0000000000000000000011 /* YearHeatmapView.swift in Sources */,
+				BB000000000000000000000B /* SmartReminderEngine.swift in Sources */,
+				BB000000000000000000000C /* LogHabitIntent.swift in Sources */,
+				BB000000000000000000000D /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		EE0000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = NTXV233G8D;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EE0000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = NTXV233G8D;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		EE0000000000000000000007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heatbits.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EE0000000000000000000008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.heatbits.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EE0000000000000000000003 /* Build configuration list for PBXProject "HeatmapHabits" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE0000000000000000000005 /* Debug */,
+				EE0000000000000000000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE0000000000000000000004 /* Build configuration list for PBXNativeTarget "HeatmapHabits" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE0000000000000000000007 /* Debug */,
+				EE0000000000000000000008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EE0000000000000000000002 /* Project object */;
+}
