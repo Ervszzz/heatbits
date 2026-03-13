@@ -2,6 +2,7 @@ import SwiftUI
 
 struct TrendsView: View {
     @EnvironmentObject var store: HabitStore
+    @EnvironmentObject var themeManager: ThemeManager
 
     var body: some View {
         NavigationStack {
@@ -19,9 +20,11 @@ struct TrendsView: View {
                 } else {
                     ScrollView {
                         VStack(spacing: 16) {
+                            overallStatsCard
                             ForEach(store.habits) { habit in
                                 HabitTrendCard(habit: habit)
                                     .environmentObject(store)
+                                    .environmentObject(themeManager)
                             }
                         }
                         .padding()
@@ -33,16 +36,55 @@ struct TrendsView: View {
             .toolbarColorScheme(.dark, for: .navigationBar)
         }
     }
+
+    private var overallStatsCard: some View {
+        let (bestHabit, bestStreak) = store.longestStreakEver()
+        return VStack(alignment: .leading, spacing: 12) {
+            Text("Overall")
+                .font(.caption)
+                .foregroundColor(Color(hex: "#8E8E93")!)
+            HStack(spacing: 0) {
+                statItem(label: "Longest Streak", value: "\(bestStreak)d",
+                         sub: bestHabit.map { "\($0.emoji) \($0.name)" } ?? "—")
+                Divider().background(Color.white.opacity(0.1)).frame(height: 40)
+                statItem(label: "Total Logs",
+                         value: "\(store.logs.filter { $0.isCompleted }.count)", sub: "all time")
+                Divider().background(Color.white.opacity(0.1)).frame(height: 40)
+                statItem(label: "Habits", value: "\(store.habits.count)", sub: "tracked")
+            }
+        }
+        .padding(16)
+        .background(Color(hex: "#1C1C1E")!)
+        .cornerRadius(12)
+    }
+
+    private func statItem(label: String, value: String, sub: String) -> some View {
+        VStack(spacing: 2) {
+            Text(value)
+                .font(.title3.bold())
+                .foregroundColor(themeManager.theme.accentColor)
+            Text(label)
+                .font(.caption2)
+                .foregroundColor(Color(hex: "#8E8E93")!)
+            Text(sub)
+                .font(.caption2)
+                .foregroundColor(Color(hex: "#636366")!)
+                .lineLimit(1)
+        }
+        .frame(maxWidth: .infinity)
+    }
 }
 
 struct HabitTrendCard: View {
     @EnvironmentObject var store: HabitStore
+    @EnvironmentObject var themeManager: ThemeManager
     let habit: Habit
 
     private var rate: Double { store.thirtyDayRate(for: habit) }
     private var current: Int { store.currentStreak(for: habit) }
     private var best: Int { store.bestStreak(for: habit) }
     private var weekly: [Int] { store.weeklyData(for: habit) }
+    private var total: Int { store.totalCompletions(for: habit) }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
@@ -55,7 +97,7 @@ struct HabitTrendCard: View {
                 Spacer()
                 Text("\(Int(rate * 100))%")
                     .font(.headline.bold())
-                    .foregroundColor(Color(hex: "#30D158")!)
+                    .foregroundColor(themeManager.theme.accentColor)
             }
 
             // 30-day progress bar
@@ -65,35 +107,37 @@ struct HabitTrendCard: View {
                         .fill(Color(hex: "#2C2C2E")!)
                         .frame(height: 8)
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(hex: habit.colorHex) ?? Color(hex: "#30D158")!)
+                        .fill(themeManager.theme.accentColor)
                         .frame(width: geo.size.width * rate, height: 8)
                 }
             }
             .frame(height: 8)
 
-            // Streaks
-            HStack(spacing: 24) {
-                streakLabel(title: "Current Streak", value: current)
-                streakLabel(title: "Best Streak", value: best)
+            // Streaks + totals
+            HStack(spacing: 0) {
+                streakLabel(title: "Current", value: "\(current)d")
+                streakLabel(title: "Best", value: "\(best)d")
+                streakLabel(title: "Total", value: "\(total)")
             }
 
             // Weekly bar chart
-            WeeklyBarChart(data: weekly, color: Color(hex: habit.colorHex) ?? Color(hex: "#30D158")!)
+            WeeklyBarChart(data: weekly, color: themeManager.theme.accentColor)
         }
         .padding(16)
         .background(Color(hex: "#1C1C1E")!)
         .cornerRadius(12)
     }
 
-    private func streakLabel(title: String, value: Int) -> some View {
+    private func streakLabel(title: String, value: String) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Text(title)
                 .font(.caption)
                 .foregroundColor(Color(hex: "#8E8E93")!)
-            Text("\(value) day\(value == 1 ? "" : "s")")
+            Text(value)
                 .font(.subheadline.bold())
                 .foregroundColor(.white)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
@@ -133,4 +177,5 @@ struct WeeklyBarChart: View {
             s.habits = Habit.sampleData()
             return s
         }())
+        .environmentObject(ThemeManager())
 }

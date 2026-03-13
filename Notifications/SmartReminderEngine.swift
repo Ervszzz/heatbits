@@ -51,6 +51,53 @@ class SmartReminderEngine {
         }
     }
 
+    func scheduleDailySummary(store: HabitStore) async {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: ["daily_summary"])
+
+        let completed = store.todayCompletedCount()
+        let total = store.todayScheduledCount()
+        guard total > 0 else { return }
+
+        let content = UNMutableNotificationContent()
+        content.title = "HeatBits Daily Summary"
+        content.body = completed == total
+            ? "🎉 You completed all \(total) habits today!"
+            : "You completed \(completed)/\(total) habits today. Finish strong!"
+        content.sound = .default
+
+        var comps = DateComponents()
+        comps.hour = 21
+        comps.minute = 0
+        let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: true)
+        let request = UNNotificationRequest(identifier: "daily_summary", content: content, trigger: trigger)
+        try? await center.add(request)
+    }
+
+    func checkStreakMilestones(for habit: Habit, store: HabitStore) async {
+        let milestones = [7, 14, 30, 60, 100]
+        let streak = store.currentStreak(for: habit)
+        guard milestones.contains(streak) else { return }
+
+        let center = UNUserNotificationCenter.current()
+        let id = "streak_\(habit.id.uuidString)_\(streak)"
+
+        let pending = await center.pendingNotificationRequests()
+        let delivered = await center.deliveredNotifications()
+        let alreadySent = pending.contains { $0.identifier == id } ||
+                          delivered.contains { $0.request.identifier == id }
+        guard !alreadySent else { return }
+
+        let content = UNMutableNotificationContent()
+        content.title = "🔥 \(streak)-Day Streak!"
+        content.body = "\(habit.emoji) \(habit.name) — keep it up!"
+        content.sound = .default
+
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+        try? await center.add(request)
+    }
+
     private func scheduleSmartReminders(for habits: [Habit], store: HabitStore) async {
         let center = UNUserNotificationCenter.current()
         let now = Date()
