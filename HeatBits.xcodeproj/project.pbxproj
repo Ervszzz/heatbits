@@ -21,6 +21,9 @@
 		BB000000000000000000000B /* SmartReminderEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D4C72367814BB09EE5DC53 /* SmartReminderEngine.swift */; };
 		BB000000000000000000000C /* LogHabitIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF99A629037422587E2AB80 /* LogHabitIntent.swift */; };
 		BB000000000000000000000D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE19BE0DED84336B129D193 /* Extensions.swift */; };
+		BB000000000000000000001A /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001A /* AppTheme.swift */; };
+		BB000000000000000000001B /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001B /* ThemeManager.swift */; };
+		BB000000000000000000001C /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001C /* ConfettiView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +46,9 @@
 		D05190DDE9B8458DB11CAF88 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		F30CC6B0A3204804AF6EDDBC /* HeatBitsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeatBitsApp.swift; sourceTree = "<group>"; };
 		FE31C1578B2B4911B9DBC4AA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AA000000000000000000001A /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
+		AA000000000000000000001B /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		AA000000000000000000001C /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfettiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -83,6 +89,7 @@
 			children = (
 				3C8EDF76B9124A48800E4934 /* Habit.swift */,
 				369FD3DA8FBB43649DC7CE2A /* HabitLog.swift */,
+				AA000000000000000000001A /* AppTheme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -92,6 +99,7 @@
 			children = (
 				20418C455FDE497197C1F350 /* HabitStore.swift */,
 				D05190DDE9B8458DB11CAF88 /* HealthKitManager.swift */,
+				AA000000000000000000001B /* ThemeManager.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -105,6 +113,7 @@
 				2C63D24E47B74F9480A767EF /* AddEditHabitView.swift */,
 				575C1DEECEA84CBA9EBB5FF2 /* TrendsView.swift */,
 				CC000000000000000000000A /* YearHeatmapView.swift */,
+				AA000000000000000000001C /* ConfettiView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -213,6 +222,9 @@
 				BB000000000000000000000B /* SmartReminderEngine.swift in Sources */,
 				BB000000000000000000000C /* LogHabitIntent.swift in Sources */,
 				BB000000000000000000000D /* Extensions.swift in Sources */,
+				BB000000000000000000001A /* AppTheme.swift in Sources */,
+				BB000000000000000000001B /* ThemeManager.swift in Sources */,
+				BB000000000000000000001C /* ConfettiView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

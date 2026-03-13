@@ -2,6 +2,7 @@ import SwiftUI
 
 struct YearHeatmapView: View {
     @EnvironmentObject var store: HabitStore
+    @EnvironmentObject var themeManager: ThemeManager
     @State private var selectedYear: Int = Calendar.current.component(.year, from: Date())
     @State private var selectedDay: Date? = nil
     @State private var showDayDetail = false
@@ -23,7 +24,9 @@ struct YearHeatmapView: View {
         }
         .sheet(isPresented: $showDayDetail) {
             if let day = selectedDay {
-                DayDetailView(date: day).environmentObject(store)
+                DayDetailView(date: day)
+                    .environmentObject(store)
+                    .environmentObject(themeManager)
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .daySelected)) { notif in
@@ -48,10 +51,10 @@ struct YearHeatmapView: View {
             Spacer()
             HStack(spacing: 16) {
                 Button { selectedYear -= 1 } label: {
-                    Image(systemName: "chevron.left").foregroundColor(Color(hex: "#30D158")!)
+                    Image(systemName: "chevron.left").foregroundColor(themeManager.theme.accentColor)
                 }
                 Button { selectedYear += 1 } label: {
-                    Image(systemName: "chevron.right").foregroundColor(Color(hex: "#30D158")!)
+                    Image(systemName: "chevron.right").foregroundColor(themeManager.theme.accentColor)
                 }
                 .disabled(selectedYear >= cal.component(.year, from: today))
             }
@@ -74,6 +77,7 @@ struct YearHeatmapView: View {
                         let monthDate = cal.date(from: DateComponents(year: selectedYear, month: month, day: 1))!
                         MiniMonthView(year: selectedYear, month: month, size: CGSize(width: monthW, height: monthH))
                             .environmentObject(store)
+                            .environmentObject(themeManager)
                             .onTapGesture { onMonthSelected(monthDate) }
                     }
                 }
@@ -101,6 +105,7 @@ struct YearHeatmapView: View {
 
 struct MiniMonthView: View {
     @EnvironmentObject var store: HabitStore
+    @EnvironmentObject var themeManager: ThemeManager
     let year: Int
     let month: Int
     let size: CGSize
@@ -160,7 +165,7 @@ struct MiniMonthView: View {
         if let d = date {
             let isFuture = d.startOfDay > today.startOfDay
             let rate: Double = isFuture ? -1.0 : store.completionRate(for: d)
-            let color: Color = isFuture ? Color(hex: "#2C2C2E")! : Color.heatmapGreen(rate: rate)
+            let color: Color = isFuture ? Color(hex: "#2C2C2E")! : themeManager.theme.heatmapColor(rate: rate)
             RoundedRectangle(cornerRadius: 2)
                 .fill(color)
                 .frame(width: cellSize, height: cellSize)
@@ -208,5 +213,6 @@ extension EnvironmentValues {
                 s.habits = Habit.sampleData()
                 return s
             }())
+            .environmentObject(ThemeManager())
     }
 }

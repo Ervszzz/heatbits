@@ -195,6 +195,28 @@ class HabitStore: ObservableObject {
         return result
     }
 
+    func totalCompletions(for habit: Habit) -> Int {
+        logs.filter { $0.habitID == habit.id && $0.isCompleted }.count
+    }
+
+    func longestStreakEver() -> (habit: Habit?, streak: Int) {
+        var best = 0
+        var bestHabit: Habit? = nil
+        for habit in habits {
+            let s = bestStreak(for: habit)
+            if s > best { best = s; bestHabit = habit }
+        }
+        return (bestHabit, best)
+    }
+
+    func todayScheduledCount() -> Int {
+        habits.filter { $0.isScheduled(on: Date()) }.count
+    }
+
+    func todayCompletedCount() -> Int {
+        habits.filter { $0.isScheduled(on: Date()) && isCompleted(habitID: $0.id, date: Date()) }.count
+    }
+
     func logHabit(named name: String) -> Bool {
         guard let habit = habits.first(where: {
             $0.name.lowercased() == name.lowercased()

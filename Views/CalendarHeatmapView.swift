@@ -2,9 +2,12 @@ import SwiftUI
 
 struct CalendarHeatmapView: View {
     @EnvironmentObject var store: HabitStore
+    @EnvironmentObject var themeManager: ThemeManager
     @State private var currentMonth: Date = Date()
     @State private var selectedDay: Date? = nil
     @State private var showDayDetail = false
+    @State private var quickLogDay: Date? = nil
+    @State private var showQuickLog = false
     @State private var viewMode: ViewMode = .month
 
     enum ViewMode { case month, year }
@@ -32,31 +35,32 @@ struct CalendarHeatmapView: View {
                             withAnimation { viewMode = .month }
                         }
                         .environmentObject(store)
+                        .environmentObject(themeManager)
                     } else {
-                    headerView
-                        .padding(.horizontal)
-                        .padding(.top, 8)
+                        headerView
+                            .padding(.horizontal)
+                            .padding(.top, 8)
 
-                    weekdayRow
-                        .padding(.horizontal)
-                        .padding(.top, 16)
+                        weekdayRow
+                            .padding(.horizontal)
+                            .padding(.top, 16)
 
-                    calendarGrid
-                        .padding(.horizontal)
-                        .padding(.top, 8)
-                        .gesture(
-                            DragGesture(minimumDistance: 40)
-                                .onEnded { value in
-                                    if value.translation.width < 0 {
-                                        navigateMonth(by: 1)
-                                    } else {
-                                        navigateMonth(by: -1)
+                        calendarGrid
+                            .padding(.horizontal)
+                            .padding(.top, 8)
+                            .gesture(
+                                DragGesture(minimumDistance: 40)
+                                    .onEnded { value in
+                                        if value.translation.width < 0 {
+                                            navigateMonth(by: 1)
+                                        } else {
+                                            navigateMonth(by: -1)
+                                        }
                                     }
-                                }
-                        )
+                            )
 
-                    Spacer()
-                    } // end else (month view)
+                        Spacer()
+                    }
                 }
             }
             .navigationBarHidden(true)
@@ -65,6 +69,14 @@ struct CalendarHeatmapView: View {
             if let day = selectedDay {
                 DayDetailView(date: day)
                     .environmentObject(store)
+                    .environmentObject(themeManager)
+            }
+        }
+        .sheet(isPresented: $showQuickLog) {
+            if let day = quickLogDay {
+                DayDetailView(date: day)
+                    .environmentObject(store)
+                    .environmentObject(themeManager)
             }
         }
     }
@@ -87,11 +99,11 @@ struct CalendarHeatmapView: View {
             HStack(spacing: 16) {
                 Button(action: { navigateMonth(by: -1) }) {
                     Image(systemName: "chevron.left")
-                        .foregroundColor(Color(hex: "#30D158")!)
+                        .foregroundColor(themeManager.theme.accentColor)
                 }
                 Button(action: { navigateMonth(by: 1) }) {
                     Image(systemName: "chevron.right")
-                        .foregroundColor(Color(hex: "#30D158")!)
+                        .foregroundColor(themeManager.theme.accentColor)
                 }
             }
         }
@@ -115,20 +127,28 @@ struct CalendarHeatmapView: View {
                 let day = days[i]
                 if let day {
                     let isFuture = day.startOfDay > Date().startOfDay
+                    let rate = store.completionRate(for: day)
                     DayCellView(
                         date: day,
-                        rate: store.completionRate(for: day),
+                        rate: rate,
                         isToday: Calendar.current.isDateInToday(day),
-                        isFuture: isFuture
+                        isFuture: isFuture,
+                        accentColor: themeManager.theme.accentColor,
+                        heatmapColor: themeManager.theme.heatmapColor(rate: rate)
                     )
                     .onTapGesture {
                         guard !isFuture else { return }
                         selectedDay = day
                         showDayDetail = true
                     }
+                    .onLongPressGesture {
+                        guard !isFuture else { return }
+                        UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
+                        quickLogDay = day
+                        showQuickLog = true
+                    }
                 } else {
-                    Color.clear
-                        .aspectRatio(1, contentMode: .fill)
+                    Color.clear.aspectRatio(1, contentMode: .fill)
                 }
             }
         }
@@ -144,7 +164,7 @@ struct CalendarHeatmapView: View {
         let cal = Calendar.current
         let start = currentMonth.startOfMonth
         let range = cal.range(of: .day, in: .month, for: start)!
-        let firstWeekday = cal.component(.weekday, from: start) // 1 = Sun
+        let firstWeekday = cal.component(.weekday, from: start)
 
         var days: [Date?] = Array(repeating: nil, count: firstWeekday - 1)
         for i in 0..<range.count {
@@ -152,7 +172,6 @@ struct CalendarHeatmapView: View {
                 days.append(d)
             }
         }
-        // Pad to fill last row
         while days.count % 7 != 0 { days.append(nil) }
         return days
     }
@@ -163,10 +182,13 @@ struct DayCellView: View {
     let rate: Double
     let isToday: Bool
     var isFuture: Bool = false
+    var accentColor: Color = Color(hex: "#30D158")!
+    var heatmapColor: Color = Color.heatmapGreen(rate: 1.0)
 
     private var cellColor: Color {
         if isFuture { return Color(hex: "#1C1C1E")! }
-        return .heatmapGreen(rate: rate)
+        if rate <= 0 { return Color(hex: "#2C2C2E")! }
+        return heatmapColor
     }
 
     var body: some View {
@@ -188,9 +210,6 @@ struct DayCellView: View {
 
 #Preview {
     CalendarHeatmapView()
-        .environmentObject({
-            let s = HabitStore()
-            s.habits = Habit.sampleData()
-            return s
-        }())
+        .environmentObject({ let s = HabitStore(); s.habits = Habit.sampleData(); return s }())
+        .environmentObject(ThemeManager())
 }

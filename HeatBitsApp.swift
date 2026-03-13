@@ -4,11 +4,13 @@ import SwiftUI
 struct HeatBitsApp: App {
     @StateObject private var habitStore = HabitStore()
     @StateObject private var healthKitManager = HealthKitManager()
+    @StateObject private var themeManager = ThemeManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(habitStore)
+                .environmentObject(themeManager)
                 .task {
                     await healthKitManager.requestAuthorization()
                     await autoLogHealthKitHabits()
@@ -17,6 +19,7 @@ struct HeatBitsApp: App {
                         for: habitStore.habits,
                         store: habitStore
                     )
+                    await SmartReminderEngine.shared.scheduleDailySummary(store: habitStore)
                     HabitStoreProvider.shared.configure(with: habitStore)
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
@@ -26,6 +29,7 @@ struct HeatBitsApp: App {
                             for: habitStore.habits,
                             store: habitStore
                         )
+                        await SmartReminderEngine.shared.scheduleDailySummary(store: habitStore)
                     }
                 }
         }
